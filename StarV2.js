@@ -19,7 +19,7 @@ class StarV2 {
         ellipse(this.x, this.y, scale, scale);
     }
 
-    update() {
+    update(directionToMove, autoSpeed) {
         if (keyIsPressed === true) {
             if (key === 'ArrowUp') {
                 // move stars up
@@ -49,6 +49,35 @@ class StarV2 {
                     this.x = this.size;
                     this.y = random(height);
                 }
+            }
+        }
+
+        if (directionToMove === 'up') {
+            this.y -= autoSpeed;
+            if (this.y < -this.size) {
+                this.x = random(width);
+                this.y = height + this.size;
+            }
+        } else if (directionToMove === 'down') {
+            // move stars down
+            this.y += autoSpeed;
+            if (this.y > height) {
+                this.x = random(width);
+                this.y = this.size;
+            }
+        } else if (directionToMove === 'left') {
+            // move stars to the left
+            this.x -= autoSpeed;
+            if (this.x < -this.size) {
+                this.x = width + this.size;
+                this.y = random(height);
+            }
+        } else if (directionToMove === 'right') {
+            // move stars to the right
+            this.x += autoSpeed;
+            if (this.x > width) {
+                this.x = this.size;
+                this.y = random(height);
             }
         }
 
