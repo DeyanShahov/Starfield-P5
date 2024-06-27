@@ -22,6 +22,8 @@ function draw() {
         drawV2();
     } else if (MENU == 3) {
         drawV3();
+    } else if (MENU == 4) {
+        drawV4();
     }
 }
 
@@ -59,20 +61,8 @@ function createMenu() {
 
 function mouseClicked() {
     if (MENU == 0) {
-        if (mouseX < 200 && mouseX > 50) {
-            if (mouseY < 125 && mouseY > 50) {
-                MENU = 1;
-                print(MENU);
-            }
-            if (mouseY < 275 && mouseY > 200) {
-                MENU = 2;
-                print(MENU);
-            }
-            if (mouseY < 425 && mouseY > 350) {
-                MENU = 3;
-                print(MENU);
-            }
-        }
+        if (mouseX < 200 && mouseX > 50) checkForButtonY(0);
+        else if (mouseX < 400 && mouseX > 250) checkForButtonY(4);
     }
 }
 
@@ -82,6 +72,25 @@ function checkForBackToMenu() {
         singleTimeSetUp = false;
         stars = [];
         noStroke();
+    }
+}
+
+function checkForButtonY(number) {
+    if (mouseY < 125 && mouseY > 50) {
+        MENU = 1 + number;
+        print(MENU);
+    }
+    if (mouseY < 275 && mouseY > 200) {
+        MENU = 2 + number;
+        print(MENU);
+    }
+    if (mouseY < 425 && mouseY > 350) {
+        MENU = 3 + number;
+        print(MENU);
+    }
+    if (mouseY < 575 && mouseY > 500) {
+        MENU = 4 + number;
+        print(MENU);
     }
 }
 
