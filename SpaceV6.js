@@ -3,7 +3,7 @@ function drawV6() {
         print('Mouse Right click to return back to the menu');
         singleTimeSetUp = true;
 
-        for (var i = 0; i < 5000; i++) {
+        for (var i = 0; i < 4000; i++) {
             stars[i] = new StarV6();
         }
     }
