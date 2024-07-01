@@ -1,5 +1,6 @@
 const textDimension = 25;
-const numButtons = 5;
+const numButtons = 7;
+const numButtonsInCol = 4;
 
 let buttonWidth = 150;
 let buttonHeight = 75;
@@ -10,13 +11,33 @@ let stars = [];
 
 let speed;
 
+let startButton = {
+    color: 'rgb(255, 160, 54)', hover_color: 'rgb(255,192,64)', corner_radius: 10, border_color: 'Black', border_hover_color: 'Yellow',
+    shadow: {blur: 5, color: 'Black'}, shading: 0.25, text_color: 'Maroon', text_hover_color: 'Maroon'
+};
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
+    //startButton = createButton('click me');
+    //startButton.position(0, 100);
+    //startButton.style('color:red');
+    //startButton.color = 'green';
+    //startButton.size(100, 50);
+    //startButton.mousePressed(udri);
+
+    // startButton = {
+    //     x: 455, y:30, w:150, h: 40, text: 'Button4', corners: [10, 0, 10,0], color: 'rgb(255,192,0)'
+    // }
+}
+
+function udri() {
+    print('+');
 }
 
 
 function draw() {
-
+    button(startButton);
 
     if (MENU === 0) createMenu();
     else if (MENU == 1) {
@@ -29,6 +50,10 @@ function draw() {
         drawV4();
     } else if (MENU == 5) {
         drawV5();
+    } else if (MENU == 6) {
+        drawV6();
+    } else if (MENU == 7) {
+        drawV7();
     }
 }
 
@@ -43,7 +68,7 @@ function createMenu() {
         rect(currentButtonX, currentButtonY, buttonWidth, buttonHeight);
         currentButtonY = currentButtonY + buttonHeight * 2;
 
-        if (currentButtonY + buttonHeight > height) {
+        if (i % numButtonsInCol === 0) {
             currentButtonY = 50;
             currentButtonX += buttonWidth + 50;
         }
@@ -59,7 +84,7 @@ function createMenu() {
         text(`Stars V${i}`, currentTextX, currentTextY);
         currentTextY += buttonHeight * 2;
 
-        if (currentTextY + textDimension > height) {
+        if (i % numButtonsInCol === 0) {
             currentTextY = 100;
             currentTextX += buttonWidth + 50;
         }
@@ -110,7 +135,6 @@ function checkForBackToMenu() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    int();
 }
 
 function keyPressed() {
