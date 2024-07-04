@@ -1,5 +1,5 @@
 const textDimension = 25;
-const numButtons = 7;
+const numButtons = 8;
 const numButtonsInCol = 4;
 
 let buttonWidth = 150;
@@ -37,6 +37,7 @@ function draw() {
     else if (MENU == 5) drawV5();
     else if (MENU == 6) drawV6();
     else if (MENU == 7) drawV7();
+    else if (MENU == 8) drawV8();
 }
 
 function loopMenu() {
@@ -71,6 +72,10 @@ function checkForBackToMenu() {
 }
 
 function backToMenu() {
+    sliderPlanetMass?.remove();
+    sliderSunMass?.remove();
+    sliderScale?.remove();
+
     MENU = 0;
     singleTimeSetUp = false;
     stars = [];
@@ -83,6 +88,13 @@ function windowResized() {
 
 function keyPressed() {
     if (key === 'Enter') fullscreenMode();
+
+    // For spaceV8 place new planet at mouse location
+    if (key === 'a') {
+        let mx = (mouseX - width / 2) * 1 / scale; // 'translate' mouseX position
+        let my = (mouseY - height / 2) * 1 / scale; // 'translate' mouseY position
+        planet = new Planet(mx, my, 5); //place new planet at mx, my, mass = 5
+    }
 }
 
 function fullscreenMode() {
